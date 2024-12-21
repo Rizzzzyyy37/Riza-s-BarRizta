@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Image Slider with Titles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            max-width: 1500px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background-color: #fff;
+            height: 600px;
+        }
+
+        .titles {
+            width: 50%;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .titles h2 {
+            font-size: 5rem;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: none;
+        }
+
+        .titles h2.active {
+            opacity: 1;
+            display: block;
+        }
+
+        .slider {
+            width: 50%;
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 100%;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slides img {
+            width: 100%;
+            flex-shrink: 0;
+            object-fit: contain;
+            border-radius: 10px;
+            height: 100%;
+        }
+
+        .buttons button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 4rem;
+            color: black;
+            background-color: white;
+            border-radius: 80px;
+            position: absolute;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .buttons button#prev {
+            right: 1400px;
+        }
+
+        .buttons button#next {
+            left: 1400px;
+        }
+
+        .buttons button:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .dots {
+            position: absolute;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .dots div {
+            width: 12px;
+            height: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dots .active {
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-container">
+        <div class="titles" id="titles">
+            <h2 class="active">Negroni</h2>
+            <h2>Sex on <br> the Beach</h2>
+            <h2>Classic <br> Margarita</h2>
+        </div>
+        <div class="slider">
+            <div class="slides">
+                <img src="Negroni.png" alt="Image 1">
+                <img src="Negroni.png" alt="Image 1">
+                <img src="Sex_on_the_beach.png" alt="Image 2">
+                <img src="Classic Margarita.png" alt="Image 3">
+                <img src="Negroni.png" alt="Image 1">
+            </div>
+        </div>
+        <div class="buttons">
+            <button id="prev"><i class="bi bi-arrow-left-circle-fill"></i></button>
+            <button id="next"><i class="bi bi-arrow-right-circle-fill"></i></button>
+        </div>
+        <div class="dots" id="dots"></div>
+    </div>
+
+    <script>
+        const slides = document.querySelector('.slides');
+        const images = document.querySelectorAll('.slides img');
+        const titles = document.querySelectorAll('.titles h2');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        const dotsContainer = document.getElementById('dots');
+
+        let index = 1; // Start at the first logical slide
+        const totalImages = images.length;
+        const logicalSlides = totalImages - 2; // Exclude duplicates
+        const slideWidth = 100;
+
+        // Create dots dynamically
+        for (let i = 0; i < logicalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        }
+
+        const dots = document.querySelectorAll('.dots .dot');
+
+        function updateDots() {
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === (index - 1) % logicalSlides);
+            });
+        }
+
+        function updateTitle() {
+            titles.forEach((title, idx) => {
+                title.classList.toggle('active', idx === (index - 1) % logicalSlides);
+            });
+        }
+
+        function moveToSlide() {
+            slides.style.transition = 'transform 0.5s ease-in-out';
+            slides.style.transform = `translateX(-${index * slideWidth}%)`;
+            updateDots();
+            updateTitle();
+        }
+
+        function nextSlide() {
+            index++;
+            moveToSlide();
+            if (index === totalImages - 1) {
+                setTimeout(() => {
+                    slides.style.transition = 'none';
+                    index = 1;
+                    slides.style.transform = `translateX(-${index * slideWidth}%)`;
+                }, 500);
+            }
+        }
+
+        function prevSlide() {
+            index--;
+            moveToSlide();
+            if (index === 0) {
+                setTimeout(() => {
+                    slides.style.transition = 'none';
+                    index = totalImages - 2;
+                    slides.style.transform = `translateX(-${index * slideWidth}%)`;
+                }, 500);
+            }
+        }
+
+        function goToSlide(slideIndex) {
+            index = slideIndex + 1; // Adjust for duplicates
+            moveToSlide();
+        }
+
+        dots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => goToSlide(idx));
+        });
+
+        nextButton.addEventListener('click', nextSlide);
+        prevButton.addEventListener('click', prevSlide);
+    </script>
+</body>
+
+</html>

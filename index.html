@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ephesis&family=Italianno&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tangerine:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <title>Home</title>
+
+    <style>
+        body {
+            font-family: "Playfair Display", serif;
+            font-optical-sizing: auto;
+            font-weight: 300;
+            font-style: normal;
+            font-optical-sizing: auto;
+            margin: 0;
+            height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            background-image: url('6.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, var(--overlay-darkness, 0.3));
+            pointer-events: none;
+            z-index: -1;
+            transition: background 0.3s ease;
+        }
+
+        /* NAV AND TITLE */
+        .welcome {
+            /*background-color: #1e90ff;*/
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /*color: white;*/
+        }
+
+        .logo-text {
+            margin-left: 50px;
+            position: relative;
+            font-family: "Tangerine", cursive;
+            font-weight: 1700;
+            font-style: normal;
+            font-size: 40px;
+            text-decoration: none;
+            color: #ff073a;
+            /* Bright red color */
+            text-shadow:
+                0 0 5px #ff073a,
+                0 0 10px #ff073a,
+                0 0 20px #ff073a,
+                0 0 30px #ff2a68,
+                0 0 40px #ff2a68,
+                0 0 50px #ff073a;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 20px 30px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            /*color: white;*/
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .logo img {
+            height: 70px;
+            width: 80px;
+            margin-right: 10px;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            padding: 25px 20px;
+            display: inline-block;
+            position: relative;
+            color: white;
+            z-index: 1;
+            overflow: hidden;
+            /* Ensures the background effect stays within the boundaries */
+        }
+
+        .navbar .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            /* Start from the center */
+            top: 50%;
+            /* Start from the center */
+            transform: translate(-50%, -50%) scale(0);
+            /* Initially scale to zero */
+            width: 100%;
+            /* Covers the entire link */
+            height: 100%;
+            /* Covers the entire link */
+            background-color: transparent;
+            /* Default background color */
+            border-radius: 10px;
+            /* Adjustable border radius */
+            transition: all 0.3s ease;
+            /* Smooth transition */
+            z-index: -1;
+            /* Ensures it's behind the text */
+        }
+
+        .navbar .nav-links .home {
+            background-color: #ff1a3c;
+            /* Neon red */
+            border-radius: 10px;
+        }
+
+        .navbar .nav-links .menu::after {
+            background-color: #007bff;
+            /* Neon blue */
+        }
+
+        .navbar .nav-links .about::after {
+            background-color: #007bff;
+            /* Neon blue */
+        }
+
+        .navbar .nav-links .contact::after {
+            background-color: #007bff;
+            /* Neon blue */
+        }
+
+
+        .navbar .nav-links a:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+            /* Expands to full size */
+        }
+
+        .navbar .nav-links a:hover {
+            color: white;
+        }
+
+
+        .wt {
+            height: 10vh;
+            display: flex;
+            margin-top: 200px;
+            font-size: 30px;
+            font-weight: 500;
+            color: white;
+        }
+
+        .bar {
+            font-family: "Tangerine", cursive;
+            font-weight: 1700;
+            font-style: normal;
+            font-size: 180px;
+            margin-top: -10px;
+            color: #ff2852;
+            /* Bright red color */
+            text-shadow:
+                0 0 2px #ff4d6d,
+                0 0 5px #ff073a,
+                0 0 10px #ff073a,
+                0 0 20px #ff073a,
+                0 0 30px #ff2a68,
+                0 0 40px #ff2a68,
+                0 0 50px #ff073a;
+
+            text-align: center;
+        }
+
+        /* END NAV AND TITLE */
+
+        .introduction-container {
+            display: flex;
+            width: 100%;
+            max-width: 1500px;
+            height: 80%;
+        }
+
+        /*.image-container {
+            flex: 1;
+            background-image: url('Party.jpg');
+            /* Example Image URL 
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin-left: 170px;
+        }*/
+
+        .text-container {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+        }
+
+        .text-container p {
+            font-size: 1.7rem;
+            line-height: 1.6;
+        }
+
+        /* Ensure the text is centered and appears on a solid background */
+        .introduction-container {
+            background-color: transparent;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            max-width: 1650px;
+            width: 100%;
+            position: relative;
+            z-index: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 600px;
+        }
+
+
+        .titles {
+            width: 50%;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: white;
+        }
+
+        .seller {
+            display: flex;
+            margin-top: 200px;
+            font-size: 50px;
+            font-weight: 500;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .titles h2 {
+            font-size: 5rem;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: none;
+        }
+
+        .titles h2.active {
+            opacity: 1;
+            display: block;
+        }
+
+        .slider {
+            width: 50%;
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 100%;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slides img {
+            width: 100%;
+            flex-shrink: 0;
+            object-fit: contain;
+            border-radius: 10px;
+            height: 100%;
+        }
+
+        .buttons button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 4rem;
+            color: white;
+            background-color: black;
+            border-radius: 80px;
+            position: absolute;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .buttons button#prev {
+            right: 1400px;
+        }
+
+        .buttons button#next {
+            left: 1400px;
+        }
+
+        .buttons button:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .dots {
+            position: absolute;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .dots div {
+            width: 12px;
+            height: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dots .active {
+            background-color: #333;
+        }
+
+        /* Footer Styling */
+        .footer {
+            color: #fff;
+            padding: 40px 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-section {
+            flex: 1 1 300px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .footer-section p,
+        .footer-section ul {
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #fff;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            color: #bbb;
+            margin-right: 10px;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #bbb;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+
+            /* Navbar */
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 20px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+
+            /* Welcome Section */
+            .wt {
+                font-size: 1rem;
+            }
+
+            .bar {
+                font-size: 1.5rem;
+            }
+
+            /* Introduction Section */
+            .introduction-container {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .image-container,
+            .text-container {
+                flex: none;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+
+            /* Slider Section */
+            .titles {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .titles h2 {
+                font-size: 0.9rem;
+                text-align: center;
+            }
+
+            .buttons {
+                justify-content: center;
+                gap: 10px;
+            }
+
+            /* Footer */
+            .footer-section {
+                margin-bottom: 15px;
+            }
+
+            .footer-section h3 {
+                font-size: 1rem;
+            }
+
+            .social-icons a {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            /* Navbar */
+            .logo-text {
+                font-size: 3rem;
+                /* Make BarRizta logo larger */
+            }
+
+            .slider-container {
+                padding: 10px;
+            }
+
+            /* Buttons are always visible */
+            .buttons {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="welcome">
+        <div class="navbar">
+            <div class="logo">
+                <span class="logo-text">BarRizta</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="home">Home</a>
+                <a href="menu.html" class="menu">Menu</a>
+                <a href="about us.html" class="about">About Us</a>
+            </div>
+        </div>
+        <p class="wt">WELCOME TO</p>
+        <p class="bar">BarRizta</p>
+    </div>
+    <div class="introduction-container">
+        <!-- Left Side: Cocktail Image -->
+        <div class="image-container">
+            <!-- The image will appear here -->
+        </div>
+
+        <!-- Right Side: Introduction Text -->
+        <div class="text-container">
+            <p>BarRitza is your ultimate destination for expertly crafted cocktails. We specialize in both classic and
+                modern cocktail drinks, offering an unforgettable experience with every sip. Whether you’re here for
+                a night out with friends or to enjoy a quiet evening, our bar is the perfect place to relax and enjoy
+                premium cocktails in a vibrant and inviting atmosphere. Come and discover your new favorite drink at
+                BarRitza.</p>
+        </div>
+    </div>
+    <div class="seller">
+        <h2>Our Best Seller's!</h2>
+    </div>
+    <div class="slider-container">
+        <div class="titles" id="titles">
+            <h2 class="active">Negroni</h2>
+            <h2>Sex on <br> the Beach</h2>
+            <h2>Classic <br> Margarita</h2>
+        </div>
+        <div class="slider">
+            <div class="slides">
+                <img src="Negroni.png" alt="Image 1">
+                <img src="Negroni.png" alt="Image 1">
+                <img src="Sex_on_the_beach.png" alt="Image 2">
+                <img src="Classic Margarita.png" alt="Image 3">
+                <img src="Negroni.png" alt="Image 1">
+            </div>
+        </div>
+        <div class="buttons">
+            <button id="prev"><i class="bi bi-arrow-left-circle-fill"></i></button>
+            <button id="next"><i class="bi bi-arrow-right-circle-fill"></i></button>
+        </div>
+        <div class="dots" id="dots"></div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Company Info Section -->
+            <div class="footer-section company-info">
+                <h3>BarRizta</h3>
+                <p>BarRizta is your go-to destination for premium cocktail drinks. Serving creativity in every sip <br>
+                    with a blend of innovation and flavor.</p>
+            </div>
+
+            <!-- Quick Links Section -->
+            <div class="footer-section quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about us.html">About Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="footer-section contact-info">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="bi bi-geo-alt"></i> 123 Sabang, Danao City, Cebu, Philippines.</li>
+                    <li><i class="bi bi-telephone"></i> (123) 456-7890</li>
+                    <li><i class="bi bi-envelope"></i> <a href="mailto:info@company.com">barrizta@gmail.com</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media Section -->
+            <div class="footer-section social-media">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2024 Company Name. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="imageslider.js"></script>
+    <scrtip src="body.js">
+        </script>
+</body>
+
+
+</html>

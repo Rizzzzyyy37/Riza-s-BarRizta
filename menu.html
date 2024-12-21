@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ephesis&family=Italianno&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tangerine:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <title>Menu</title>
+
+    <style>
+        body {
+            font-family: "Playfair Display", serif;
+            font-optical-sizing: auto;
+            font-weight: 300;
+            font-style: normal;
+            font-optical-sizing: auto;
+            margin: 0;
+            height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            background-image: url('4.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, var(--overlay-darkness, 0.3));
+            pointer-events: none;
+            z-index: -1;
+            transition: background 0.3s ease;
+        }
+
+        /* NAV AND TITLE */
+        .welcome {
+            /*background-color: #1e90ff;*/
+            height: 35vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /*color: white;*/
+        }
+
+        .logo-text {
+            margin-left: 50px;
+            position: relative;
+            font-family: "Tangerine", cursive;
+            font-weight: 1700;
+            font-style: normal;
+            font-size: 40px;
+            text-decoration: none;
+            color: #ff073a;
+            /* Bright red color */
+            text-shadow:
+                0 0 5px #ff073a,
+                0 0 10px #ff073a,
+                0 0 20px #ff073a,
+                0 0 30px #ff2a68,
+                0 0 40px #ff2a68,
+                0 0 50px #ff073a;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 20px 30px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            /*color: white;*/
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .logo img {
+            height: 70px;
+            width: 80px;
+            margin-right: 10px;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            padding: 25px 20px;
+            display: inline-block;
+            position: relative;
+            color: white;
+            z-index: 1;
+            overflow: hidden;
+            /* Ensures the background effect stays within the boundaries */
+        }
+
+        .navbar .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            /* Start from the center */
+            top: 50%;
+            /* Start from the center */
+            transform: translate(-50%, -50%) scale(0);
+            /* Initially scale to zero */
+            width: 100%;
+            /* Covers the entire link */
+            height: 100%;
+            /* Covers the entire link */
+            background-color: transparent;
+            /* Default background color */
+            border-radius: 10px;
+            /* Adjustable border radius */
+            transition: all 0.3s ease;
+            /* Smooth transition */
+            z-index: -1;
+            /* Ensures it's behind the text */
+        }
+
+        .navbar .nav-links .home::after {
+            background-color: #007bff;
+            /* Neon red */
+        }
+
+        .navbar .nav-links .menu {
+            background-color: #ff1a3c;
+            /* Neon blue */
+            border-radius: 10px;
+        }
+
+        .navbar .nav-links .about::after {
+            background-color: #007bff;
+            /* Neon blue */
+        }
+
+        .navbar .nav-links .contact::after {
+            background-color: #007bff;
+            /* Neon blue */
+        }
+
+
+        .navbar .nav-links a:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+            /* Expands to full size */
+        }
+
+        .navbar .nav-links a:hover {
+            color: white;
+        }
+
+        .slider-container {
+            width: 80%;
+            max-width: 800px;
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            width: calc(100% * 2);
+            /* Width accommodates all items (2 per slide) */
+        }
+
+        .slider-item {
+            flex: 0 0 50%;
+            /* Each item takes up 50% of the container width */
+            box-sizing: border-box;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .slider-item2 {
+            flex: 0 0 50%;
+            /* Each item takes up 50% of the container width */
+            box-sizing: border-box;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .slider-item8 {
+            flex: 0 0 50%;
+            /* Each item takes up 50% of the container width */
+            box-sizing: border-box;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+
+        .slider-item img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .item-info {
+            margin-top: 10px;
+        }
+
+        .item-info h3 {
+            font-size: 3rem;
+            color: white;
+            margin: 5px 0;
+        }
+
+        .item-info p {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .buttons button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 4rem;
+            color: white;
+            background-color: black;
+            border-radius: 80px;
+            position: absolute;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .buttons button#prev {
+            right: 700px;
+        }
+
+        .buttons button#next {
+            left: 1430px;
+        }
+
+        .buttons button:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Footer Styling */
+        .footer {
+            color: #fff;
+            padding: 40px 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-section {
+            flex: 1 1 300px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .footer-section p,
+        .footer-section ul {
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #fff;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            color: #bbb;
+            margin-right: 10px;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #bbb;
+        }
+
+        /* General Responsive Adjustments */
+        @media (max-width: 768px) {
+
+            /* Navbar */
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .logo-text {
+                font-size: 3rem;
+                /* Make the logo text larger for mobile */
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            /* Slider Section */
+            .slider-item {
+                flex: 0 0 50%;
+                /* Show 2 items per row on mobile */
+            }
+
+            .buttons {
+                visibility: visible;
+                /* Show slider navigation buttons on mobile */
+            }
+
+            .buttons button {
+                font-size: 2rem;
+                /* Adjust button size for better usability */
+            }
+
+            /* Footer */
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            .footer-section ul {
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            /* Further adjustments for smaller screens */
+            .slider-item {
+                flex: 0 0 100%;
+                /* Show 1 item per row on very small screens */
+            }
+
+            .logo-text {
+                font-size: 2.5rem;
+                /* Slightly reduce the logo text size for very small screens */
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+                /* Adjust font size of navigation links */
+            }
+
+            .item-info h3 {
+                font-size: 1rem;
+                /* Adjust item title font size */
+            }
+
+            .item-info p {
+                font-size: 0.9rem;
+                /* Adjust price font size */
+            }
+
+            .footer-section h3 {
+                font-size: 1.2rem;
+                /* Adjust footer headings */
+            }
+        }
+
+        /* General Responsive Adjustments */
+        @media (max-width: 768px) {
+
+            /* Navbar */
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .logo-text {
+                font-size: 3rem;
+                /* Make the logo text larger for mobile */
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            /* Slider Section */
+            .slider-item {
+                flex: 0 0 50%;
+                /* Show 2 items per row on mobile */
+            }
+
+            .buttons {
+                visibility: visible;
+                /* Show slider navigation buttons on mobile */
+            }
+
+            .buttons button {
+                font-size: 2rem;
+                /* Adjust button size for better usability */
+                background: rgba(0, 0, 0, 0.7);
+                /* Ensure buttons are visible */
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 50%;
+                cursor: pointer;
+                position: absolute;
+                z-index: 10;
+            }
+
+            #prev {
+                left: 10px;
+                /* Position the 'prev' button on the left */
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            #next {
+                right: 10px;
+                /* Position the 'next' button on the right */
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            /* Footer */
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            .footer-section ul {
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            /* Further adjustments for smaller screens */
+            .slider-item {
+                flex: 0 0 100%;
+                /* Show 1 item per row on very small screens */
+            }
+
+            .logo-text {
+                font-size: 2.5rem;
+                /* Slightly reduce the logo text size for very small screens */
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+                /* Adjust font size of navigation links */
+            }
+
+            .item-info h3 {
+                font-size: 1rem;
+                /* Adjust item title font size */
+            }
+
+            .item-info p {
+                font-size: 0.9rem;
+                /* Adjust price font size */
+            }
+
+            .buttons button {
+                font-size: 1.5rem;
+                /* Slightly reduce button size */
+                padding: 8px;
+            }
+
+            .footer-section h3 {
+                font-size: 1.2rem;
+                /* Adjust footer headings */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="welcome">
+        <div class="navbar">
+            <div class="logo">
+                <span class="logo-text">BarRizta</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="home">Home</a>
+                <a href="menu.html" class="menu">Menu</a>
+                <a href="about us.html" class="about">About Us</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slider-item">
+                <img src="Classic Margarita.png" alt="Item 1">
+                <div class="item-info">
+                    <h3>Classic Margarita</h3>
+                    <p>₱1,500.00</p>
+                </div>
+            </div>
+            <div class="slider-item2">
+                <img src="Cosmopolitan.png" alt="Item 2">
+                <div class="item-info">
+                    <h3>Cosmopolitan</h3>
+                    <p>₱280.00</p>
+                </div>
+            </div>
+            <div class="slider-item">
+                <img src="Espresso_martini.png" alt="Item 3">
+                <div class="item-info">
+                    <h3>Espresso Martini</h3>
+                    <p>₱1,500.00</p>
+                </div>
+            </div>
+            <div class="slider-item">
+                <img src="Mezcal_Mojito.png" alt="Item 4">
+                <div class="item-info">
+                    <h3>Mezcal Mojito</h3>
+                    <p>₱389.00</p>
+                </div>
+            </div>
+            <div class="slider-item">
+                <img src="Negroni.png" alt="Item 5">
+                <div class="item-info">
+                    <h3>Negroni</h3>
+                    <p>₱959.00</p>
+                </div>
+            </div>
+            <div class="slider-item">
+                <img src="Old_fashioned.png" alt="Item 6">
+                <div class="item-info">
+                    <h3>Old Fashioned</h3>
+                    <p>₱265.00</p>
+                </div>
+            </div>
+            <div class="slider-item">
+                <img src="Passion_fruit_martini.png" alt="Item 7">
+                <div class="item-info">
+                    <h3>Passion Fruit Martini</h3>
+                    <p>₱2,800.00</p>
+                </div>
+            </div>
+            <div class="slider-item8">
+                <img src="Pimm_s_Cup.png" alt="Item 8">
+                <div class="item-info">
+                    <h3>Pimm's Cup</h3>
+                    <p>₱900.00</p>
+                </div>
+            </div>
+            <div class="slider-item">
+                <img src="Piña_Colada.png" alt="Item 9">
+                <div class="item-info">
+                    <h3>Piña Colada</h3>
+                    <p>₱220.00</p>
+                </div>
+            </div>
+            <div class="slider-item">
+                <img src="Sex_on_the_beach.png" alt="Item 10">
+                <div class="item-info">
+                    <h3>Sex on the Beach</h3>
+                    <p>₱225.00</p>
+                </div>
+            </div>
+            <div class="slider-item">
+                <img src="Piña_Colada.png" alt="Item 9">
+                <div class="item-info">
+                    <h3>Piña Colada</h3>
+                    <p>₱220.00</p>
+                </div>
+            </div>
+            <div class="slider-item">
+                <img src="Sex_on_the_beach.png" alt="Item 10">
+                <div class="item-info">
+                    <h3>Sex on the Beach</h3>
+                    <p>₱225.00</p>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button id="prev"><i class="bi bi-arrow-left-circle-fill"></i></button>
+            <button id="next"><i class="bi bi-arrow-right-circle-fill"></i></button>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Company Info Section -->
+            <div class="footer-section company-info">
+                <h3>BarRizta</h3>
+                <p>BarRizta is your go-to destination for premium cocktail drinks. Serving creativity in every sip <br>
+                    with a blend of innovation and flavor.</p>
+            </div>
+
+            <!-- Quick Links Section -->
+            <div class="footer-section quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about us.html">About Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="footer-section contact-info">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="bi bi-geo-alt"></i> 123 Sabang, Danao City, Cebu, Philippines.</li>
+                    <li><i class="bi bi-telephone"></i> (123) 456-7890</li>
+                    <li><i class="bi bi-envelope"></i> <a href="mailto:info@company.com">barrizta@gmail.com</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media Section -->
+            <div class="footer-section social-media">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2024 Company Name. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        const slider = document.querySelector('.slider');
+        const sliderItems = document.querySelectorAll('.slider-item');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+
+        let currentIndex = 0;
+        const totalSlides = Math.ceil(sliderItems.length / 2); // Number of slides (2 items per slide)
+
+        function updateSliderPosition() {
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`; // Move one "full slide" (100% width) at a time
+        }
+
+        // Event listeners for Next and Prev buttons
+        nextButton.addEventListener('click', () => {
+            if (currentIndex < totalSlides - 1) {
+                currentIndex++;
+                updateSliderPosition();
+            }
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSliderPosition();
+            }
+        });
+
+    </script>
+    <scrtip src="body.js">
+        </script>
+</body>
+
+</html>
